@@ -1,0 +1,8 @@
+﻿  Game.cpp
+C:\Users\Laptop\source\repos\HangmanGame\HangmanGame\Game.h(16,6): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Laptop\source\repos\HangmanGame\HangmanGame\Game.cpp(31,34): warning C4267: 'argument': conversion from 'size_t' to 'const _Elem', possible loss of data
+          with
+          [
+              _Elem=char
+          ]
+  HangmanGame.vcxproj -> C:\Users\Laptop\source\repos\HangmanGame\x64\Debug\HangmanGame.exe
