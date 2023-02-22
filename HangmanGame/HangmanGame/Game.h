@@ -15,7 +15,11 @@ private:
 	int grantedAttempts = 8;
 	int lengthOfWord=THE_WORD.length();
 	
+	
+	char WordArray[7] = {};
 	std::string wordSoFar;
+	
+	//wordSoFar.assign(10,'e');
 	std::string usedLetters;
 	
 	char guess;
@@ -26,6 +30,8 @@ public:
 	Game();
 	~Game();
 	void Play();
+	void SetArrayBlank(int numberOfLetters);
+	std::string ReturnWord();
 	void ShuffleWords();
 	void LoadWords();
 	void CheckWin();

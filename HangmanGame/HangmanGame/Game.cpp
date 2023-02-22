@@ -8,6 +8,7 @@ Game::Game()
 {
     LoadWords();
     THE_WORD = wordCollection[0];
+    
     wrongAttempts = 0;
     usedLetters = "";
 
@@ -22,19 +23,19 @@ Game::~Game()
 void Game::Play()
 {
     
-    
     srand(static_cast<unsigned int>(time(0)));
 
     ShuffleWords();
 
     std::cout<< "Welcome to Hangman. Good Luck :) " << std::endl;
-    wordSoFar=(THE_WORD.length());
+    SetArrayBlank(7);
+    
 
     while ((wrongAttempts<grantedAttempts) && (wordSoFar != THE_WORD)) {
         std::cout << "\n\nYou have " << (grantedAttempts - wrongAttempts);
         std::cout << " incorrect guesses left.\n" << std::endl;
         std::cout << "You've used the following letters:\n" << usedLetters << std::endl;
-        std::cout << "\nSo Far, the word is:\n" << wordSoFar << std::endl;
+        std::cout << "\nSo Far, the word is:\n" << ReturnWord() << std::endl;
         
 
         std::cout << "\nEnter your Guess: ";
@@ -57,7 +58,7 @@ void Game::Play()
             for (int i = 0; i < THE_WORD.length(); ++i) {
                 if (THE_WORD[i] == guess)
                 {
-                    wordSoFar[i] = guess;
+                    WordArray[i] = guess;
                 }
             }
        }
@@ -67,12 +68,31 @@ void Game::Play()
            ++wrongAttempts;
        }
        CheckWin();
-
+       
 
     }
     
 }
-void Game::ShuffleWords() 
+
+void Game::SetArrayBlank(int numberOfLetters)
+{
+    for (size_t i = 0; i < numberOfLetters; i++)
+    {
+        WordArray[i] = '*';
+    }
+}
+
+
+std::string Game::ReturnWord()
+{
+    std::string str;
+    for (char letter : WordArray) {
+        str+=letter;
+    }
+    return str;
+}
+
+void Game::ShuffleWords()
 {
     int randNum=0;
 
@@ -88,13 +108,20 @@ void Game::ShuffleWords()
 void Game::CheckWin()
 {
     if (wrongAttempts == grantedAttempts) {
+        
+        std::cout <<"" << std::endl;
         std::cout << "You have been HANGED :( " << std::endl;
+       
     } 
     else {
-        std::cout << "You guessed it! :)" << std::endl;
+        std::cout << ""<<std::endl;
+        
+
+
+        
     }
 
-    std::cout << "The Word was " << THE_WORD << std::endl;
+    //std::cout << "The Word was " << THE_WORD << std::endl;
       
 }
 
@@ -103,10 +130,9 @@ void Game::CheckWin()
 void Game::LoadWords()
 {
     wordCollection.push_back("RISOTTO");
-    wordCollection.push_back("DUMPLINGS");
     wordCollection.push_back("SASHIMI");
     wordCollection.push_back("CHURROS");
-    wordCollection.push_back("SPAGHETTI");
     wordCollection.push_back("ONIGIRI");
+    
 }
 
